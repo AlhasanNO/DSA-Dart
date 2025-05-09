@@ -1,30 +1,50 @@
-# This file configures the static analysis results for your project (errors,
-# warnings, and lints).
-#
-# This enables the 'recommended' set of lints from `package:lints`.
-# This set helps identify many issues that may lead to problems when running
-# or consuming Dart code, and enforces writing Dart using a single, idiomatic
-# style and format.
-#
-# If you want a smaller set of lints you can change this to specify
-# 'package:lints/core.yaml'. These are just the most critical lints
-# (the recommended set includes the core lints).
-# The core lints are also what is used by pub.dev for scoring packages.
+# analysis_options.yaml
 
 include: package:lints/recommended.yaml
 
-# Uncomment the following section to specify additional rules.
+analyzer:
+  # Enable stricter type inference
+  language:
+    strict-inference: true
 
-# linter:
-#   rules:
-#     - camel_case_types
+  # Treat missing docs as warnings (optional)
+  errors:
+    public_member_api_docs: warning
+    always_declare_return_types: warning
 
-# analyzer:
-#   exclude:
-#     - path/to/excluded/files/**
+  # Exclude generated files from analysis
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "**/*.mocks.dart"
 
-# For more information about the core and recommended set of lints, see
-# https://dart.dev/go/core-lints
+linter:
+  rules:
+    # ─── Style & Readability ────────────────────────────────────────────────────
+    always_declare_return_types: true
+    always_specify_types: true
+    annotate_overrides: true
+    slash_for_doc_comments: true
+    file_names: true
+    directives_ordering: true
+    library_prefixes: true
 
-# For additional information about configuring this file, see
-# https://dart.dev/guides/language/analysis-options
+    # ─── Code Safety & Null-safety ─────────────────────────────────────────────
+    avoid_empty_else: true
+    avoid_returning_null: true
+    avoid_null_checks_in_equality_operators: true
+    prefer_null_aware_operators: true
+    prefer_if_null_operators: true
+
+    # ─── Performance & Best Practices ─────────────────────────────────────────
+    avoid_print: true
+    prefer_final_locals: true
+    prefer_final_fields: true
+    prefer_const_constructors: true
+    prefer_const_literals_to_create_immutables: true
+    use_function_type_syntax_for_parameters: true
+    control_flow_in_finally: true
+
+    # ─── Naming ────────────────────────────────────────────────────────────────
+    camel_case_types: true
+    constant_identifier_names: true
